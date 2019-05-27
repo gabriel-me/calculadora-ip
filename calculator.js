@@ -20,7 +20,7 @@ function getTheNumberOfHosts(typeNetwork) {
   return ((2 ** ((32 - typeNetwork))) - 2);
 }
 
-function convertDecimalToBinary(ip) {
+function convertDecimalToBinary(ip, typeResult = 'object') {
   ip = ip.split('.');
   let sum = 0;
   const sequence = [128, 64, 32, 16, 8, 4, 2, 1];
@@ -52,5 +52,6 @@ function convertDecimalToBinary(ip) {
     }
   });
 
-  return result;
+  return (typeResult === 'binary') ? 
+    result[0].binary + result[1].binary + result[2].binary + result[3].binary : result;
 }
