@@ -1,3 +1,14 @@
+function ipSplit(ip) {
+  if (ip.indexOf('/') === -1) {
+    return ip.split('.');
+  } else {
+    ip = ip.split('.');
+    ip[4] = ip[3].split('/')[1];
+    ip[3] = ip[3].split('/')[0];
+    return ip;
+  }
+}
+
 function IPvalidation(ip, keyboardEvent) {
   let ipSplit = ip.split('.');
   let countOctet = ipSplit.length;
