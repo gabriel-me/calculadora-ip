@@ -79,3 +79,12 @@ function listenIpInput(callbackFunction) {
     callbackFunction($ip.value, e);
   });
 }
+
+function showResult(...result) {
+  document.querySelector('#mask').value = result[0];
+  document.querySelector('#cidr').value = result[0];
+  document.querySelector('#class').value = result[1];
+  document.querySelector('#sub').value = result[3];
+  document.querySelector('#host').value = result[2];
+  document.querySelector('#binary').value = result[3];
+}
