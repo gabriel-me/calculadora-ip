@@ -9,10 +9,12 @@ function ipSplit(ip) {
   }
 }
 
-function IPvalidation(ip, keyboardEvent) {
-  let ipSplit = ip.split('.');
-  let countOctet = ipSplit.length;
-  if (countOctet === 4 && !isNaN(keyboardEvent.key))
+function ipValidation(ip, keyboardEvent) {
+  if (
+    ipSplit(ip).length > 4 &&
+    ipSplit(ip)[4].length > 1 &&
+    keyboardEvent.key == 'Enter'
+  )
     return true;
   return false;
 }
