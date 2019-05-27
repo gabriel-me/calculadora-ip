@@ -70,7 +70,7 @@ function convertDecimalToBinary(ip, typeResult = 'object') {
   });
 
   return (typeResult === 'binary') ? 
-    result[0].binary + result[1].binary + result[2].binary + result[3].binary : result;
+    `${result[0].binary}.${result[1].binary}.${result[2].binary}.${result[3].binary}` : result;
 }
 
 function listenIpInput(callbackFunction) {
