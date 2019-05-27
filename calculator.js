@@ -33,6 +33,10 @@ function getTheNumberOfHosts(typeNetwork) {
   return ((2 ** ((32 - typeNetwork))) - 2);
 }
 
+function getCidr(ip) {
+  return `/${ipSplit(ip)[4]}`;
+}
+
 function convertDecimalToBinary(ip, typeResult = 'object') {
   ip = ip.split('.');
   let sum = 0;
