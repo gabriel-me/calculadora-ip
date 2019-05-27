@@ -14,6 +14,12 @@ function getClass(ip) {
   else return 'undefined';
 }
 
+function getTheNumberOfHosts(typeNetwork) {
+  if (isNaN(typeNetwork)) 
+    typeNetwork = typeNetwork.split('/')[1];
+  return ((Math.pow(2, (32 - typeNetwork))) - 2);
+}
+
 function convertDecimalToBinary(ip) {
   ip = ip.split('.');
   let sum = 0;
