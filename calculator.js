@@ -37,6 +37,40 @@ function getCidr(ip) {
   return `/${ipSplit(ip)[4]}`;
 }
 
+function getMask(ip) {
+
+  let cidr = getCidr(ip).substring(1, ip.length);
+  let octets = [];
+  const sequence = [128, 64, 32, 16, 8, 4, 2, 1];
+
+  for (let i = 0; i < 4; i++) {
+    if (cidr > 7) {
+      octets[i] = 8;
+      cidr -= 8;
+    } else {
+      octets[i] = cidr;
+      for (let j = i + 1; j < 4; j++) {
+        octets[j] = 0;
+      }
+      break;
+    }
+  }
+
+  for (let i = 0; i < 4; i++) {
+    if (octets[i] === 8) {
+      octets[i] = 255;
+    } else {
+      let valueOcteto = 0;
+      for (let j = 0; j < octets[i]; j++) {
+        valueOcteto += sequence[j];
+      }
+      octets[i] = valueOcteto;
+    }
+  }
+
+  return octets.join('.');
+}
+
 function convertDecimalToBinary(ip, typeResult = 'object') {
   ip = ip.split('.');
   let sum = 0;
@@ -92,7 +126,7 @@ function showResult(...result) {
 function runCalculator() {
   listenIpInput((ip, e) => {
     if (ipValidation(ip, e)) {
-      const mask = '';
+      const mask = getMask(ip);
       const cidr = getCidr(ip);
       const clas = getClass(ip);
       const sub = '';
