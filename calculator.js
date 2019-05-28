@@ -88,3 +88,19 @@ function showResult(...result) {
   document.querySelector('#host').value = result[4];
   document.querySelector('#binary').value = result[5];
 }
+
+function runCalculator() {
+  listenIpInput((ip, e) => {
+    if (ipValidation(ip, e)) {
+      const mask = '';
+      const cidr = getCidr(ip);
+      const clas = getClass(ip);
+      const sub = '';
+      const host = getTheNumberOfHosts(ip);
+      const binary = convertDecimalToBinary(ip, 'binary');
+      showResult(mask, cidr, clas, sub, host, binary);
+    }
+  });
+}
+
+runCalculator();
