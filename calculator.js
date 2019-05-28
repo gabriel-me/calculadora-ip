@@ -37,6 +37,17 @@ function getCidr(ip) {
   return `/${ipSplit(ip)[4]}`;
 }
 
+function getSubnet(ip) {
+  let cidr = getCidr(ip).substring(1, ip.length);
+  let clas = getClass(ip);
+  let number = 8;
+
+  if (clas === 'B') number = 16;
+  else if (clas === 'C') number = 24;
+
+  return Math.round((2 ** (cidr - number)));
+}
+
 function getMask(ip) {
 
   let cidr = getCidr(ip).substring(1, ip.length);
@@ -129,7 +140,7 @@ function runCalculator() {
       const mask = getMask(ip);
       const cidr = getCidr(ip);
       const clas = getClass(ip);
-      const sub = '';
+      const sub = getSubnet(ip);
       const host = getTheNumberOfHosts(ip);
       const binary = convertDecimalToBinary(ip, 'binary');
       showResult(mask, cidr, clas, sub, host, binary);
