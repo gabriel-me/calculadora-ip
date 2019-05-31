@@ -83,7 +83,7 @@ function getMask(ip) {
 }
 
 function convertDecimalToBinary(ip, typeResult = 'object') {
-  ip = ip.split('.');
+  ip = ipSplit(ip);
   let sum = 0;
   const sequence = [128, 64, 32, 16, 8, 4, 2, 1];
 
