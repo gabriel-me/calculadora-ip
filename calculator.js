@@ -12,7 +12,7 @@ function ipSplit(ip) {
 function ipValidation(ip, keyboardEvent) {
   if (
     ipSplit(ip).length > 4 &&
-    ipSplit(ip)[4].length > 1 &&
+    ipSplit(ip)[4].length > 0 &&
     keyboardEvent.key == 'Enter'
   )
     return true;
